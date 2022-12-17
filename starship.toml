@@ -1,15 +1,19 @@
 # vim:fileencoding=utf-8:ft=conf:foldmethod=marker
 
-# Replace the "❯" symbol in the prompt with "➜"
+#format{{{
+format = """
+[╭─➜](bright-purple) $kubernetes$directory$rust$package$git_branch $git_status $git_state $git_metrics$golang$python$terraform$docker_context$glcoud$aws
+[╰───➜](bright-purple) $character"""
+
 [character] # The name of the module we are configuring is "character"
 #success_symbol = "[➜](bold green)" # The "success_symbol" segment is being set to "➜" with the color "bold green"
-success_symbol = "[\\[INSERT\\]](bold green)" # The "success_symbol" segment is being set to "➜" with the color "bold green"
+success_symbol = "[\\(insert\\)](italic green)" # The "success_symbol" segment is being set to "➜" with the color "bold green"
 #success_symbol = "[\\[\\]](bold green) "
-#vicmd_symbol = "[\\(normal\\)](italic #949494) "
+vicmd_symbol = "[\\(normal\\)](italic #949494) "
 #vicmd_symbol = "[\\[\\]](bold #949494) "
-vicmd_symbol = "[\\[NORMAL\\]](bold #949494) "
+#vicmd_symbol = "[\\[NORMAL\\]](bold #949494) "}}}
 
-
+#genral config{{{
 # Disable the package module, hiding it from the prompt completely
 [package]
 disabled = true
@@ -18,10 +22,12 @@ disabled = true
 disable = true
 
 # Wait 10 milliseconds for starship to check files under the current directory.
-scan_timeout = 10
+scan_timeout = 5
 
 # Inserts a blank line between shell prompts
-add_newline = false
+add_newline = false# }}}
+
+#notes{{{
 #
 #format = """
 #$username\
@@ -91,8 +97,9 @@ add_newline = false
 #$time\
 #$status\
 #$shell\
-#$character"""
+#$character"""}}}
 
+#aws{{{
 [aws]
 format = 'on [$symbol($profile )(\($region\) )]($style)'
 style = "italic #87af00"
@@ -100,8 +107,9 @@ symbol = ""
 [aws.region_aliases]
 ap-southeast-2 = "au"
 us-east-1 = "va"
-us-east-2 = "oh"
+us-east-2 = "oh"# }}}
 
+#kubernetes{{{
 [kubernetes]
 format = '[  $context \($namespace\)](bold italic #0087ff) '
 disabled = false
@@ -109,11 +117,13 @@ disabled = false
 [kubernetes.context_aliases]
 "dev.local.cluster.k8s" = "dev"
 ".*/openshift-cluster/.*" = "openshift"
-"gke_.*_(?P<cluster>[\\w-]+)" = "gke-$cluster"
+"gke_.*_(?P<cluster>[\\w-]+)" = "gke-$cluster"# }}}
 
+#helm{{{
 [helm]
-format = "via [⎈ $version](bold white) "
+format = "via [⎈ $version](bold white) "# }}}
 
+#git{{{
 [git_branch]
 symbol = " "
 truncation_length = 15
@@ -121,10 +131,24 @@ truncation_symbol = ""
 
 [git_state]
 format = '[\($state( $progress_current of $progress_total)\)]($style) '
-cherry_pick = "[🍒 PICKING](bold red)"
+cherry_pick = "[🍒 PICKING](bright-red)"# }}}
 
+#python{{{
+[python]
+format = "via [  $version](bright-yellow)w "# }}}
+
+#golang{{{
 [golang]
-format = "via [ﳑ $version](bold cyan) "
+format = "via [ﳑ $version](bright-cyan) "# }}}
 
+#node{{{
 [nodejs]
-format = "via [ $version](bold green) "
+format = "via [ $version](bright-green) "# }}}
+
+#ruby{{{
+[ruby]
+symbol = " "# }}}
+
+#rust{{{
+[rust]
+format = "via [ $version](bright-red) "# }}}
