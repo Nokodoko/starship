@@ -1,9 +1,9 @@
 # vim:fileencoding=utf-8:ft=conf:foldmethod=marker
 
-#format{{{
+#vformat{{{
 format = """
 [╭─➜](bright-purple) $kubernetes$directory$rust$package$git_branch $git_status $git_state $git_metrics$golang$python$terraform$docker_context$glcoud$aws
-[╰───➜](bright-purple) $character"""
+[╰─n0ko➜](italic bright-purple) $character"""
 
 [character] # The name of the module we are configuring is "character"
 #success_symbol = "[➜](bold green)" # The "success_symbol" segment is being set to "➜" with the color "bold green"
